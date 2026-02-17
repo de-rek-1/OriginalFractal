@@ -1,10 +1,17 @@
-def cifr(x, y, radius, level):
-    if level == 0:
-        return 
-    drawCircle(x, y, radius) 
-    num = 6
-    for i in range(num):
-        angle = (2 * PI / num) * i
-        newX = x + cos(angle) * radius * 1.5
-        newY = y + sin(angle) * radius * 1.5
-        cifr(newX, newY, radius / 2, level - 1)
+void setup() {
+  size(600, 600);
+  noFill();
+  stroke(0);
+  circ(width/2, height/2, 200, 4);
+}
+void circ(float x, float y, float r, int level) {
+  if (level == 0){
+    return;
+  }
+  ellipse(x, y, r*2, r*2);
+  float newR = r / 2;
+  circ(x + r/2, y, newR, level - 1);
+  circ(x - r/2, y, newR, level - 1);
+  circ(x, y + r/2, newR, level - 1);
+  circ(x, y - r/2, newR, level - 1);
+}
